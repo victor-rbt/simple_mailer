@@ -7,6 +7,7 @@ app = Flask(__name__)
 api = Api(app)
 
 app.config.from_object('env')
+mail = Mail(app)
 
 
 class Mailer(Resource):
@@ -28,7 +29,6 @@ class Mailer(Resource):
         return self._send_mail(msg)
 
     def _send_mail(self, msg):
-        mail = Mail(app)
         with mail.connect() as connect:
             msg.sender = app.config['SENDER']
             msg.recipients = app.config['RECIPIENTS']
