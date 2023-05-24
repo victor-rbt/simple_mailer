@@ -19,7 +19,7 @@ class Mailer(Resource):
         return self._send_mail(msg)
 
     def post(self):
-        data_receive = request.json
+        data_receive = request.json.get('data')
 
         msg = Message(
             subject=data_receive['subject'],
